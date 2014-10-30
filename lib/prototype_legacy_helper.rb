@@ -5,7 +5,7 @@ module PrototypeHelper
                    (100..599).to_a)
   AJAX_OPTIONS = Set.new([ :before, :after, :condition, :url,
                    :asynchronous, :method, :insertion, :position,
-                   :form, :with, :update, :script ]).merge(CALLBACKS)]
+                   :form, :with, :update, :script ]).merge(CALLBACKS)
     
   def build_callbacks(options)
     callbacks = {}
