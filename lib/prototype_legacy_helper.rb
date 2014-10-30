@@ -5,8 +5,8 @@ module PrototypeHelper
                    (100..599).to_a)
   AJAX_OPTIONS = Set.new([ :before, :after, :condition, :url,
                    :asynchronous, :method, :insertion, :position,
-                   :form, :with, :update, :script ]).merge(CALLBACKS)
-
+                   :form, :with, :update, :script ]).merge(CALLBACKS)]
+    
   def build_callbacks(options)
     callbacks = {}
     options.each do |callback, code|
@@ -494,6 +494,15 @@ module PrototypeHelper
   end
 
   protected
+  
+    def options_for_javascript(options)
+      if options.empty?
+        '{}'
+      else
+        "{#{options.keys.map { |k| "#{k}:#{options[k]}" }.sort.join(', ')}}"
+      end
+    end
+    
     def build_observer(klass, name, options = {})
       if options[:with] && (options[:with] !~ /[\{=(.]/)
         options[:with] = "'#{options[:with]}=' + encodeURIComponent(value)"
